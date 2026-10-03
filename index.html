@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>انتشارات گریت | سرآمد در آموزش</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Tahoma, 'Segoe UI', sans-serif;
+    background: #0a0e17;
+    color: #e6edf3;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 14, 23, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  .logo {
+    font-size: 1.6em;
+    font-weight: 800;
+    color: #d4af37;
+    letter-spacing: 2px;
+  }
+  .logo span { color: #e6edf3; }
+  nav a {
+    color: #8b949e;
+    text-decoration: none;
+    margin: 0 18px;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  nav a:hover { color: #d4af37; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 80px;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+      #0a0e17;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 4.5em;
+    font-weight: 900;
+    color: #e6edf3;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 span {
+    color: #d4af37;
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+  }
+  .hero p {
+    font-size: 1.25em;
+    color: #8b949e;
+    max-width: 700px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero .tagline {
+    font-size: 0.9em;
+    color: #d4af37;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+  }
+  .btn {
+    display: inline-block;
+    padding: 16px 45px;
+    background: #d4af37;
+    color: #0a0e17;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.95em;
+    transition: 0.3s;
+    position: relative;
+    z-index: 1;
+    border: 2px solid #d4af37;
+  }
+  .btn:hover {
+    background: transparent;
+    color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+  }
+
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px;
+    position: relative;
+  }
+  .section-label {
+    font-size: 0.85em;
+    color: #d4af37;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  section h2 {
+    font-size: 2.8em;
+    font-weight: 800;
+    color: #e6edf3;
+    margin-bottom: 30px;
+  }
+  section h2 span { color: #d4af37; }
+  section > p {
+    color: #8b949e;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+
+  #about { border-top: 1px solid rgba(212, 175, 55, 0.1); }
+
+  #stats { border-top: 1px solid rgba(212, 175, 55, 0.1); }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  .stat {
+    background: linear-gradient(135deg, #131824 0%, #0f141f 100%);
+    padding: 40px 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    opacity: 0;
+    transition: 0.4s;
+  }
+  .stat:hover {
+    border-color: #d4af37;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+  }
+  .stat:hover::before { opacity: 1; }
+  .stat .num {
+    font-size: 3.5em;
+    color: #d4af37;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+  .stat .label {
+    color: #8b949e;
+    font-size: 1em;
+  }
+
+  #honors { border-top: 1px solid rgba(212, 175, 55, 0.1); }
+  .honors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .honor-card {
+    background: linear-gradient(135deg, #131824 0%, #0f141f 100%);
+    padding: 35px 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .honor-card::after {
+    content: '★';
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: rgba(212, 175, 55, 0.15);
+    font-size: 3em;
+  }
+  .honor-card:hover {
+    border-color: #d4af37;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+  }
+  .honor-card h3 {
+    color: #d4af37;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+  .honor-card p {
+    color: #8b949e;
+    font-size: 1em;
+  }
+
+  #channel {
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    text-align: center;
+  }
+  .channel-box {
+    background: linear-gradient(135deg, #131824 0%, #0a0e17 100%);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    padding: 70px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .channel-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+  .channel-box h2, .channel-box p, .channel-box a, .channel-box .section-label {
+    position: relative;
+    z-index: 1;
+  }
+  .channel-box h2 {
+    margin-bottom: 20px;
+  }
+  .channel-box p {
+    color: #8b949e;
+    font-size: 1.15em;
+    max-width: 600px;
+    margin: 0 auto 35px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 50px 20px;
+    background: #0a0e17;
+    color: #8b949e;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    margin-top: 60px;
+  }
+  footer .footer-logo {
+    color: #d4af37;
+    font-size: 1.5em;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+  }
+  footer a {
+    color: #d4af37;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  footer a:hover { color: #f0c75e; }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 15px 20px; }
+    nav a { margin: 0 8px; font-size: 0.8em; }
+    .hero h1 { font-size: 2.5em; }
+    .hero p { font-size: 1em; }
+    section { padding: 70px 20px; }
+    section h2 { font-size: 2em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">گریت<span>.</span></div>
+  <nav>
+    <a href="#about">درباره</a>
+    <a href="#stats">آمار</a>
+    <a href="#honors">افتخارات</a>
+    <a href="#channel">کانال</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="tagline">سرآمد در آموزش</div>
+  <h1>انتشارات <span>گریت</span></h1>
+  <p>
+    انتشارات دانش‌آموزی گریت، ارائه‌دهنده منابع آموزشی، آزمون‌ها و دانش
+    باکیفیت — رایگان برای همه.
+  </p>
+  <a href="#channel" class="btn">ورود به کانال</a>
+</div>
+
+<section id="about" class="fade-in">
+  <div class="section-label">ما کی هستیم</div>
+  <h2>درباره <span>گریت</span></h2>
+  <p>
+    انتشارات گریت یک پروژه دانش‌آموزی است که با یک مأموریت تأسیس شده:
+    دسترسی همه دانش‌آموزان به محتوای آموزشی باکیفیت. ما کتاب‌ها، آزمون‌ها
+    و منابع یادگیری را برای دانش‌آموزان تیزهوش و کنکوری طراحی می‌کنیم —
+    کاملاً رایگان.
+  </p>
+</section>
+
+<section id="stats" class="fade-in">
+  <div class="section-label">در یک نگاه</div>
+  <h2>تأثیر <span>ما</span></h2>
+  <div class="stats">
+    <div class="stat">
+      <div class="num">[۵]</div>
+      <div class="label">کتاب</div>
+    </div>
+    <div class="stat">
+      <div class="num">[۱۰]</div>
+      <div class="label">آزمون</div>
+    </div>
+    <div class="stat">
+      <div class="num">[۵۰+]</div>
+      <div class="label">عضو</div>
+    </div>
+    <div class="stat">
+      <div class="num">[۱۰۰+]</div>
+      <div class="label">دانلود</div>
+    </div>
+  </div>
+</section>
+
+<div class="honors-grid">
+  <div class="honor-card">
+    <h3>حسین عارف‌نیا</h3>
+    <p>تیزهوشان شهید بهشتی اندیمشک</p>
+  </div>
+  <div class="honor-card">
+    <h3>محمدرضا شیدا</h3>
+    <p>نمونه دولتی تبیان اندیمشک</p>
+  </div>
+  <div class="honor-card">
+    <h3>امیرحسین مرادی</h3>
+    <p>دانشگاه پیام نور — کامپیوتر</p>
+  </div>
+  <div class="honor-card">
+    <h3>علی صادقی</h3>
+    <p>دانشگاه آزاد — هنر</p>
+  </div>
+  <div class="honor-card">
+    <h3>سارا محمدی</h3>
+    <p>دانشگاه علمی کاربردی — مدیریت</p>
+  </div>
+  <div class="honor-card">
+    <h3>محمد کریمی</h3>
+    <p>دانشگاه پیام نور — علوم انسانی</p>
+  </div>
+</div>
+
+<section id="channel" class="fade-in">
+  <div class="channel-box">
+    <div class="section-label">با ما در ارتباط باش</div>
+    <h2>ورود به <span>کانال</span></h2>
+    <p>
+      همه کتاب‌ها، آزمون‌ها و منابع آموزشی از طریق کانال ایتای ما
+      در دسترس شماست. همه چی رایگان، برای همیشه.
+    </p>
+    <a href="https://eitaa.com/GeritInstitute" class="btn" target="_blank">
+      ورود به کانال
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">گریت</div>
+  <p>Gerit institute Copyright Reserved 2026©</p>
+  <p style="margin-top: 12px;">
+    <a href="https://eitaa.com/GeritInstitute" target="_blank"
+  </p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
